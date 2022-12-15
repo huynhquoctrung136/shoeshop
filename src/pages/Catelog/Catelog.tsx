@@ -1,11 +1,12 @@
-import React from 'react'
+/** @format */
 
-type Props = {}
+import React from "react";
+import Helmet from "../../components/Helmet";
+
+type Props = {};
 
 function Catelog({}: Props) {
-  return (
-    <div>Catelog</div>
-  )
+  return <Helmet title="Sản phẩm">Catelog</Helmet>;
 }
 
-export default Catelog
+export default Catelog;

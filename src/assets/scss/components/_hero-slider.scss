@@ -1,0 +1,185 @@
+/** @format */
+
+.hero-slider {
+  height: 200vh;
+  max-height: 750px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 50px;
+  margin-top: calc(#{$header-height} * -1);
+
+  @include tablet {
+    margin-top: calc(#{$header-tablet-height} * -1);
+  }
+  @include mobile {
+    margin-top: calc(#{$header-mobile-height} * -1);
+  }
+  .hero-slider__item {
+    @include flex(center, space-between);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+
+    @include tablet {
+      flex-direction: column-reverse;
+      padding-top: $header-tablet-height;
+    }
+    @include mobile {
+      padding-top: unset;
+      padding-bottom: 40px;
+    }
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: visible;
+    }
+    .hero-slider__item__info {
+      width: 58.33%;
+      @include tablet {
+        width: 100%;
+        flex-grow: 1;
+      }
+      .hero-slider__item__info__title,
+      .hero-slider__item__info__description {
+        margin-bottom: 60px;
+
+        @include tablet {
+          margin-bottom: 15px;
+        }
+      }
+      .hero-slider__item__info__title {
+        font-family: "M PLUS Rounded 1c", sans-serif;
+        font-weight: 600;
+        font-size: 3rem;
+        line-height: 4.5rem;
+        overflow: hidden;
+        @include tablet{
+            font-size: 2.5rem;
+            line-height: 3rem;
+        }
+
+        @include mobile{
+            font-size: 2.5rem;
+            line-height: 3.75rem;
+        }
+      }
+
+      .hero-slider__item__info__description {
+        color: $txt-second-color;
+        font-size: 1.5rem;
+        line-height: 2.25rem;
+        overflow: hidden;
+
+        @include mobile {
+          font-size: 0.75rem;
+          line-height: 1.25rem;
+        }
+        @include tablet{
+            font-size: 1rem;
+            line-height: 1.5rem;
+        }
+      }
+      &__btn {
+        overflow: hidden;
+      }
+    }
+
+    .hero-slider__item__image {
+      flex-grow: 1;
+      position: relative;
+      height: 50%;
+      pointer-events: none;
+      @include tablet {
+        width: 100%;
+        height: 60%;
+        @include flex(center, center);
+        flex-grow: unset;
+      }
+      img {
+        height: 50vh;
+        transform: rotate(-15deg);
+        position: absolute;
+        top: 0;
+        right: 0;
+        @include tablet {
+          width: 55%;
+          position: relative;
+        }
+      }
+
+      .shape {
+        $size: 472px;
+        height: $size;
+        width: $size;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        border-radius: 58% 42% 38% 62% / 42% 55% 45% 58%;
+        transform: translate(0, -50%);
+        transition: border-radius 13s ease;
+        animation: border 10s infinite;
+
+        @include tablet{
+            size: 250px;
+            height: $size;
+            width: $size;
+            right: 50%;
+            transform: translate(50%, -50%);
+        }
+
+        @include tablet {
+          $size: 250px;
+          height: $size;
+          width: $size;
+          right: 50%;
+          transform: translate(50%, -50%);
+        }
+      }
+    }
+  }
+
+  &__control {
+    @include flex(center, center);
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @include tablet {
+      bottom: 20px;
+    }
+
+    &__item ~ &__item {
+      margin-left: 10px;
+    }
+
+    &__item {
+      @include flex(center, center);
+      font-size: 2rem;
+      cursor: pointer;
+
+      &:hover {
+        color: $main-color;
+      }
+
+      .index {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+@keyframes border {
+  0% {
+    border-radius: 58% 42% 38% 62% / 42% 55% 45% 58%;
+  }
+  50% {
+    border-radius: 31% 69% 59% 41% / 28% 24% 76% 72%;
+  }
+  100% {
+    border-radius: 58% 42% 38% 62% / 42% 55% 45% 58%;
+  }
+}
