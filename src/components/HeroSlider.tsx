@@ -4,6 +4,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { SliderModel } from "../model/SliderModel";
 import { NavLink } from "react-router-dom";
+import Button from "./Button";
+
 type HeroSliderProps = {
   data: SliderModel[];
   control: boolean;
@@ -60,7 +62,12 @@ export const HeroSlider = (props: HeroSliderProps) => {
                   </div>
                   <div className="hero-slider__item__info__btn">
                     <NavLink to={item.path}>
-                      <button>Xem Chi Tiết</button>
+                      <Button
+                        backgroundColor={item.color}
+                        icon="bx bx-cart"
+                        animate={true}
+                        size={""}
+                      >Xem Chi tiết</Button>
                     </NavLink>
                   </div>
                 </div>

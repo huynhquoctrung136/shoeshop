@@ -26,7 +26,7 @@ const mainNav = [
 
 const Header = (props: Props) => {
   const { pathname } = useLocation();
-  const headerRef:any = useRef<HTMLElement>(null);
+  const headerRef: any = useRef<HTMLElement>(null);
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -39,7 +39,6 @@ const Header = (props: Props) => {
         headerRef.current?.classList.remove("shrink");
       }
     });
-   
   }, []);
 
   const activeNav = mainNav.findIndex((e) => e.path === pathname);

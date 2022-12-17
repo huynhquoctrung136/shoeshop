@@ -12,6 +12,11 @@ import {
 import Helmet from "../../components/Helmet";
 import { arrSlider } from "../../assets/fakeData/hero-slider";
 import { HeroSlider } from "../../components/HeroSlider";
+import Section, { SectionBody, SectionTitle } from "../../components/Section";
+import { arrPolicy } from "../../assets/fakeData/policy";
+import PolicyCard from "../../components/PolicyCard";
+import Grid from "../../components/Grid";
+import { NavLink } from "react-router-dom";
 
 type Props = {};
 
@@ -35,22 +40,45 @@ const Home = (props: Props) => {
   return (
     <Helmet title="Trang chủ">
       {/* HeroSlider */}
-      <HeroSlider 
-      control={true} auto={true} timeOut={5000} data={arrSlider} />
+      <HeroSlider control={true} auto={false} timeOut={5000} data={arrSlider} />
       {/* EndHeroSlider */}
 
-      <div className="container">
-        <h3 className="text-center">Product Features</h3>
-        <div className="row">
+      {/* Policy section */}
+      <Section>
+        <SectionBody>
+          <Grid col={4} mdCol={2} smCol={1} gap={20}>
+            {arrPolicy.map((item, index: number) => {
+              return (
+                <NavLink to={"/policy"}>
+                  <PolicyCard
+                    key={index}
+                    name={item.name}
+                    description={item.description}
+                    icon={item.icon}
+                  ></PolicyCard>
+                </NavLink>
+              );
+            })}
+          </Grid>
+        </SectionBody>
+      </Section>
+
+      {/* End Policy */}
+
+      {/* best selling section */}
+      <Section>
+        <SectionTitle>Top Sản Phẩm Bán Chạy</SectionTitle>
+      </Section>
+
+      <SectionBody>
+        <Grid col={4} mdCol={2} smCol={1} gap={20}>
           {arrProduct.map((prod: ProductModel, index: number) => {
-            return (
-              <div className="col-3">
-                <ProductCard key={index} prod={prod} />
-              </div>
-            );
+            return <ProductCard key={index} prod={prod} />;
           })}
-        </div>
-      </div>
+        </Grid>
+      </SectionBody>
+
+      {/* end best selling section */}
     </Helmet>
   );
 };
