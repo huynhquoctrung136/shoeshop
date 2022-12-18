@@ -56,14 +56,14 @@
         font-size: 3rem;
         line-height: 4.5rem;
         overflow: hidden;
-        @include tablet{
-            font-size: 2.5rem;
-            line-height: 3rem;
+        @include tablet {
+          font-size: 2.5rem;
+          line-height: 3rem;
         }
 
-        @include mobile{
-            font-size: 2.5rem;
-            line-height: 3.75rem;
+        @include mobile {
+          font-size: 2.5rem;
+          line-height: 3.75rem;
         }
       }
 
@@ -77,9 +77,9 @@
           font-size: 0.75rem;
           line-height: 1.25rem;
         }
-        @include tablet{
-            font-size: 1rem;
-            line-height: 1.5rem;
+        @include tablet {
+          font-size: 1rem;
+          line-height: 1.5rem;
         }
       }
       &__btn {
@@ -103,7 +103,7 @@
         transform: rotate(-15deg);
         position: absolute;
         top: 0;
-        right: 0;
+        right: 25px;
         @include tablet {
           width: 55%;
           position: relative;
@@ -122,12 +122,12 @@
         transition: border-radius 13s ease;
         animation: border 10s infinite;
 
-        @include tablet{
-            size: 250px;
-            height: $size;
-            width: $size;
-            right: 50%;
-            transform: translate(50%, -50%);
+        @include tablet {
+          size: 250px;
+          height: $size;
+          width: $size;
+          right: 50%;
+          transform: translate(50%, -50%);
         }
 
         @include tablet {

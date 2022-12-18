@@ -46,7 +46,9 @@ const Footer = (props: Props) => {
   ];
 
   return (
-    <footer className="footer">
+   <>
+   <div className="line"></div>
+     <footer className="footer">
       <div className="container">
         <Grid col={4} mdCol={2} smCol={1} gap={10}>
           <div>
@@ -103,6 +105,7 @@ const Footer = (props: Props) => {
         </Grid>
       </div>
     </footer>
+   </>
   );
 };
 
