@@ -1,7 +1,9 @@
 /** @format */
 
 import React, { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
+import { RootState } from "../redux/configStore";
 
 type Props = {};
 
@@ -27,6 +29,7 @@ const mainNav = [
 const Header = (props: Props) => {
   const { pathname } = useLocation();
   const headerRef: any = useRef<HTMLElement>(null);
+  const { userLogin } = useSelector((state: RootState) => state.userReducer);
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -41,6 +44,17 @@ const Header = (props: Props) => {
     });
   }, []);
 
+  const renderLoginUI = () => {
+    if (userLogin) {
+      return <NavLink to={"/profile"}>{userLogin.email}</NavLink>;
+    } else {
+      return (
+        <NavLink to={"/login"}>
+          <i className="bx bx-user"></i>
+        </NavLink>
+      );
+    }
+  };
   const activeNav = mainNav.findIndex((e) => e.path === pathname);
   return (
     <div className="header">
@@ -83,9 +97,7 @@ const Header = (props: Props) => {
               </NavLink>
             </div>
             <div className="header__menu__item header__menu__right__item">
-              <NavLink to={"/login"}>
-                <i className="bx bx-user"></i>
-              </NavLink>
+              {renderLoginUI()}
             </div>
           </div>
         </div>

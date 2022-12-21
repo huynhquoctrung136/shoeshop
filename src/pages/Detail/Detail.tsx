@@ -12,7 +12,7 @@ import {
 } from "../../redux/reducers/productReducer/productReducer";
 import Button from "../../components/Button";
 import Grid from "../../components/Grid";
-import { SectionBody } from "../../components/Section";
+import { SectionBody, SectionTitle } from "../../components/Section";
 
 type Props = {};
 
@@ -163,13 +163,12 @@ const Detail = (props: Props) => {
           </div>
         </div>
       </div>
+      <SectionTitle>Related Product</SectionTitle>
       <SectionBody>
         <Grid col={3} mdCol={2} smCol={1} gap={20}>
           {productDetail?.relatedProducts.map(
             (prod: RelatedProduct, index: number) => {
-              return (
-                <ProductCard prod={prod} />
-              );
+              return <ProductCard prod={prod} />;
             }
           )}
         </Grid>

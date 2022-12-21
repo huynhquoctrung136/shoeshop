@@ -1,7 +1,7 @@
 /** @format */
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, unstable_HistoryRouter as HistoryBrowser } from "react-router-dom";
 import Carts from "./pages/Carts/Carts";
 import Detail from "./pages/Detail/Detail";
 
@@ -19,6 +19,7 @@ import { store } from "./redux/configStore";
 import Home from "./pages/Home/Home";
 import Catelog from "./pages/Catelog/Catelog";
 import Contact from "./pages/Contact/Contact";
+import { history } from "./utils/config";
 
 //Setup React-Router-Dom
 const root = ReactDOM.createRoot(
@@ -26,7 +27,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <HistoryBrowser history={history}>
       <Routes>
         <Route path="" element={<HomeTemplate />}>
           <Route index element={<Home />}></Route>
@@ -43,6 +44,6 @@ root.render(
           <Route path="*" element={<Navigate to="" />}></Route>
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HistoryBrowser>
   </Provider>
 );

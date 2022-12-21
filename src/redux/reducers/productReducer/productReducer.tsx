@@ -2,6 +2,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { store } from "../../configStore";
+import { http } from "../../../utils/config";
 export interface ProductModel {
   id: number;
   name: string;
@@ -74,7 +75,7 @@ const initialState: ProductState = {
       image: "https://shop.cyberlearn.vn/images/adidas-prophere.png",
     },
   ],
-  productDetail: null
+  productDetail: null,
 };
 
 const productReducer = createSlice({
@@ -139,10 +140,7 @@ export const getProductApi = () => {
 export const getProductDetailApi = createAsyncThunk(
   "productReducer/getProductDetailApi",
   async (id: string) => {
-    const response = await axios({
-      url: `https://shop.cyberlearn.vn/api/Product/getbyid?id=${id}`,
-      method: "GET",
-    });
+    const response = await http.get(`/api/Product/getbyid?id=${id}`);
     return response.data.content; //ProductDetailModel
   }
 );
