@@ -1,0 +1,39 @@
+/** @format */
+
+.sidebar {
+  background-color: rgb(100, 99, 99);
+  color: $btn-main-color;
+  a {
+    margin-left: 10px;
+    display: block;
+    color: white;
+    padding-bottom: 10px;
+    font-size: 25px;
+    text-decoration: none;
+  }
+  .card-body {
+    a {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    span {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    h3 {
+      font-size: 25px;
+    }
+  }
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  h3 {
+    font-size: 18px;
+  }
+  .row {
+    margin-top: 18px;
+  }
+}

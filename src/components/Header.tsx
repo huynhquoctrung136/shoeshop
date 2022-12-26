@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
 import { RootState } from "../redux/configStore";
+import { ACCESS_TOKEN, USER_LOGIN, settings } from "../utils/config";
 
 type Props = {};
 
@@ -46,7 +47,40 @@ const Header = (props: Props) => {
 
   const renderLoginUI = () => {
     if (userLogin) {
-      return <NavLink to={"/profile"}>{userLogin.email}</NavLink>;
+      return (
+        <div className="dropdown">
+          <NavLink
+            to={"/profile"}
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {userLogin.email}
+          </NavLink>
+          <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li>
+              <NavLink className="dropdown-item" to={"/profile"}>
+                Thông Tin Tài Khoản
+              </NavLink>
+            </li>
+            <li>
+              <span
+                onClick={() => {
+                  settings.eraseCookie(ACCESS_TOKEN);
+                  settings.eraseCookie(USER_LOGIN);
+                  settings.clearStorage(ACCESS_TOKEN);
+                  settings.clearStorage(USER_LOGIN);
+
+                  window.location.reload();
+                }}
+                className="dropdown-item"
+              >
+                Đăng xuất
+              </span>
+            </li>
+          </ul>
+        </div>
+      );
     } else {
       return (
         <NavLink to={"/login"}>

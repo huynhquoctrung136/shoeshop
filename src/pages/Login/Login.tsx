@@ -4,14 +4,14 @@ import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { UserLoginModel } from "../../model/UserLoginModel";
-import { loginAsyncApi } from "../../redux/reducers/userReducer/userReducer";
+import { loginAsyncApi} from "../../redux/reducers/userReducer/userReducer";
 import { useDispatch } from "react-redux";
 import { DispatchType } from "../../redux/reducers/productReducer/productReducer";
-
+import FacebookLogin from "react-facebook-login";
 type Props = {};
 
 const Login = (props: Props) => {
-  const dispatch:DispatchType = useDispatch();
+  const dispatch: DispatchType = useDispatch();
   const frmLogin = useFormik<UserLoginModel>({
     initialValues: {
       email: "",
@@ -30,6 +30,13 @@ const Login = (props: Props) => {
       dispatch(actionAsyncLogin);
     },
   });
+  // const responseFacebook = (res: any) => {
+  //   console.log(res);
+  //   if(res?.accessToken) {
+  //     const actionThunk = loginFacebookApi(res.accessToken);
+  //     dispatch(actionThunk);
+  //   }
+  // };
   return (
     <div className="Login">
       <div className="line"></div>
@@ -75,24 +82,22 @@ const Login = (props: Props) => {
           Sign in
         </button>
         {/* Register buttons */}
-        <div className="text-center">
+        {/* <div className="text-center">
           <p>
             Not a member? <a href="#!">Register</a>
           </p>
           <p>or sign up with:</p>
-          <button type="button" className="btn btn-link btn-floating mx-1">
-            <i className="fab fa-facebook-f" />
-          </button>
-          <button type="button" className="btn btn-link btn-floating mx-1">
-            <i className="fab fa-google" />
-          </button>
-          <button type="button" className="btn btn-link btn-floating mx-1">
-            <i className="fab fa-twitter" />
-          </button>
-          <button type="button" className="btn btn-link btn-floating mx-1">
-            <i className="fab fa-github" />
-          </button>
-        </div>
+          <div className="login__icon">
+            <FacebookLogin
+              appId="554365589605482"
+              autoLoad={true}
+              fields="name,email,picture"
+              callback={responseFacebook}
+              cssClass="btn btn-primary"
+              icon="fa-facebook"
+            />
+          </div>
+        </div> */}
       </form>
     </div>
   );

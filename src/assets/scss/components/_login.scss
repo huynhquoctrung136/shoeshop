@@ -1,3 +1,11 @@
-.Login{
-    background-color: rgba(199, 186, 186, 0.067);
+/** @format */
+
+.Login {
+  .login__icon {
+    background-color: $main-color;
+    color: $btn-main-color;
+    &:hover {
+      color: $btn-main-color;
+    }
+  }
 }

@@ -120,10 +120,7 @@ export type DispatchType = typeof store.dispatch;
 export const getProductApi = () => {
   return async (dispatch: DispatchType) => {
     try {
-      const result = await axios({
-        url: "https://shop.cyberlearn.vn/api/Product",
-        method: "GET",
-      });
+      const result = await http.get(`/api/Product`);
       const content: ProductModel[] = result.data.content;
       console.log("content: ", content);
       const action: PayloadAction<ProductModel[]> =
